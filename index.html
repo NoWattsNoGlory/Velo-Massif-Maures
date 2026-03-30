@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semaine Vélo — Massif des Maures</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --terre: #8B5E3C;
+    --olive: #6B7A4A;
+    --ciel: #2C5F7A;
+    --sable: #F5EDD8;
+    --ecru: #EDE5CC;
+    --nuit: #1A1A18;
+    --gris: #6B6860;
+    --accent: #C8873A;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--sable);
+    color: var(--nuit);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* COVER */
+  .cover {
+    min-height: 100vh;
+    background: var(--nuit);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 80%, rgba(139,94,60,0.4) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(44,95,122,0.3) 0%, transparent 60%);
+  }
+
+  .cover-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    color: var(--sable);
+    line-height: 1;
+    position: relative;
+    margin-bottom: 0.5rem;
+  }
+
+  .cover h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .cover-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 3vw, 2rem);
+    color: rgba(245,237,216,0.6);
+    position: relative;
+    margin-bottom: 3rem;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 3rem;
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .cover-meta-item {
+    border-left: 2px solid var(--accent);
+    padding-left: 1rem;
+  }
+
+  .cover-meta-item .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .cover-meta-item .value {
+    font-size: 1.1rem;
+    color: var(--sable);
+    font-weight: 500;
+  }
+
+  .cover-dots {
+    position: absolute;
+    top: 3rem;
+    right: 4rem;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 6px;
+    opacity: 0.2;
+  }
+
+  .cover-dots span {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--sable);
+    display: block;
+  }
+
+  /* LAYOUT */
+  .page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2rem;
+  }
+
+  .page + .page {
+    border-top: 1px solid var(--ecru);
+  }
+
+  /* SECTION HEADERS */
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--olive);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.15;
+    margin-bottom: 0.3rem;
+  }
+
+  h2 em {
+    font-style: italic;
+    color: var(--terre);
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    color: var(--nuit);
+    margin-bottom: 2.5rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+
+  /* ALERTS */
+  .alert {
+    background: var(--nuit);
+    color: var(--sable);
+    padding: 1.5rem 1.75rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+  }
+  .alert * { color: var(--sable); }
+  .alert strong { color: var(--accent) !important; }
+  .alert a { color: var(--accent) !important; }
+  .alert .alert-title { color: var(--accent) !important; }
+
+  .alert-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .alert p { font-size: 0.92rem; line-height: 1.7; color: var(--sable); }
+  .alert strong { color: var(--accent); font-weight: 500; }
+  .alert-title { color: var(--accent) !important; }
+
+  .alert-olive {
+    background: #3a4025;
+    color: var(--sable);
+  }
+
+  .alert-blue {
+    background: #1a2e3d;
+    color: var(--sable);
+  }
+
+  /* DAY CARDS */
+  .day-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    margin-bottom: 2rem;
+  }
+
+  .day-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    line-height: 1;
+    color: var(--accent);
+    font-weight: 700;
+    background: var(--nuit);
+    border: 3px solid var(--accent);
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .day-title-block h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .day-title-block h3 em {
+    font-style: italic;
+    color: var(--terre);
+  }
+
+  .day-stats {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: #3a3a38;
+  }
+
+  .stat-val {
+    color: var(--nuit);
+    font-weight: 500;
+  }
+
+  .difficulty {
+    display: flex;
+    gap: 3px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ecru);
+    border: 1.5px solid var(--gris);
+  }
+
+  .dot.filled {
+    background: var(--terre);
+    border-color: var(--terre);
+  }
+
+  /* CONTENT */
+  .prose p {
+    margin-bottom: 1.1rem;
+    font-size: 0.95rem;
+    color: #2a2a28;
+  }
+
+  .prose strong { font-weight: 500; color: var(--nuit); }
+
+  .route-points {
+    background: var(--ecru);
+    padding: 1.25rem 1.5rem;
+    margin: 1.5rem 0;
+    border-left: 3px solid var(--olive);
+    color: var(--nuit);
+  }
+
+  .route-points-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--olive);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .route-flow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .route-flow span.arr {
+    color: var(--gris);
+    font-size: 0.8rem;
+  }
+
+  .tip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .tip {
+    background: white;
+    border: 1px solid var(--ecru);
+    padding: 1rem 1.25rem;
+    border-radius: 2px;
+  }
+
+  .tip-icon {
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    display: block;
+  }
+
+  .tip-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--gris);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .tip p { font-size: 0.85rem; line-height: 1.6; color: #3a3a38; }
+
+  /* TABLE */
+  .recap-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.87rem;
+    margin-top: 2rem;
+  }
+
+  .recap-table th {
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--gris);
+    text-transform: uppercase;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid var(--nuit);
+  }
+
+  .recap-table td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--ecru);
+    vertical-align: top;
+  }
+
+  .recap-table tr:hover td {
+    background: var(--ecru);
+  }
+
+  .recap-table .j {
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    color: var(--terre);
+    white-space: nowrap;
+  }
+
+  .badge {
+    display: inline-block;
+    background: var(--olive);
+    color: white;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 1px;
+    text-transform: uppercase;
+  }
+
+  .badge.warning { background: var(--terre); }
+  .badge.info { background: var(--ciel); }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--ecru);
+    margin: 2.5rem 0;
+  }
+
+  /* PRATIQUE */
+  .pratique-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .pratique-item {
+    padding: 1.25rem;
+    border: 1px solid var(--ecru);
+    background: white;
+  }
+
+  .pratique-item .pi-icon { font-size: 1.5rem; margin-bottom: 0.6rem; display: block; }
+  .pratique-item .pi-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--olive);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .pratique-item p { font-size: 0.85rem; line-height: 1.6; }
+
+  /* FOOTER */
+  footer {
+    background: var(--nuit);
+    color: rgba(245,237,216,0.75);
+    text-align: center;
+    padding: 3rem 2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+  }
+
+  footer strong { color: var(--accent); }
+
+
+  .komoot-section {
+    margin-top: 2rem;
+    border-top: 1px solid var(--ecru);
+    padding-top: 1.5rem;
+  }
+  .komoot-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--nuit);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+  }
+  .komoot-section iframe {
+    border-radius: 2px;
+    display: block;
+  }
+
+  @media print {
+    .cover { min-height: auto; padding: 3rem; }
+    .page { padding: 3rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-dots">
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <div class="cover-tag">Topo cycliste · Var · Début mai</div>
+  <h1>Massif des<br><em>Maures</em></h1>
+  <div class="cover-sub">Marseille · Bormes-les-Mimosas · Saint-Tropez · Thoronet</div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <div class="label">Durée</div>
+      <div class="value">8 jours</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Distance</div>
+      <div class="value">~560 km</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Dénivelé</div>
+      <div class="value">~6 600 m D+</div>
+    </div>
+    <div class="cover-meta-item">
+      <div class="label">Cyclistes</div>
+      <div class="value">3 · niveau confirmé</div>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE 1 : PRÉSENTATION -->
+<div class="page">
+  <div class="section-tag">Vue d'ensemble</div>
+  <h2>Huit jours de route,<br><em>mer, massif &amp; silence</em></h2>
+  <div class="subtitle">Camp de base · Bormes-les-Mimosas · J1 → J4 + retour J7</div>
+
+  <div class="prose">
+    <p>Camp de base à Bormes-les-Mimosas, village médiéval perché parmi les mimosas, d'où rayonnent quatre boucles dans le Massif des Maures. Deux nuits en agriturismo dans les vignes du Haut-Var avant un retour par Toulon. Routes peu fréquentées, forêt dense, presqu'île de Giens et port de Saint-Tropez.</p>
+    <p>Début mai est la période idéale : les routes sont désertes, la température est parfaite pour rouler (15–22°C), les mimosas et les cistes sont en fleurs, et aucune restriction DFCI n'est en vigueur.</p>
+  </div>
+
+  <table class="recap-table">
+    <thead>
+      <tr>
+        <th>Jour</th>
+        <th>Étape</th>
+        <th>Km</th>
+        <th>D+</th>
+        <th>Difficulté</th>
+        <th>Nuit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="j">J0</td>
+        <td>Arrivée Marseille · Le Panier</td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td>Airbnb Le Panier</td>
+      </tr>
+      <tr>
+        <td class="j">J1</td>
+        <td>Marseille → Bormes <span class="badge info">Transfert</span></td>
+        <td>~130</td>
+        <td>~1 200</td>
+        <td>●●●○○</td>
+        <td>Bormes</td>
+      </tr>
+      <tr>
+        <td class="j">J2</td>
+        <td>Boucle Cœur des Maures</td>
+        <td>~85</td>
+        <td>~1 300</td>
+        <td>●●●●○</td>
+        <td>Bormes</td>
+      </tr>
+      <tr>
+        <td class="j">J3</td>
+        <td>Boucle Corniche & Saint-Tropez</td>
+        <td>~95</td>
+        <td>~1 200</td>
+        <td>●●●○○</td>
+        <td>Bormes</td>
+      </tr>
+      <tr>
+        <td class="j">J4</td>
+        <td>Boucle Presqu'île de Giens</td>
+        <td>~75</td>
+        <td>~700</td>
+        <td>●●○○○</td>
+        <td>Bormes</td>
+      </tr>
+      <tr>
+        <td class="j">J5</td>
+        <td>Bormes → Agriturismo Haut-Var <span class="badge warning">Engagement</span></td>
+        <td>~100</td>
+        <td>~1 400</td>
+        <td>●●●●●</td>
+        <td>Agriturismo</td>
+      </tr>
+      <tr>
+        <td class="j">J6</td>
+        <td>Thoronet · retour Bormes <span class="badge warning">Long</span></td>
+        <td>~130</td>
+        <td>~1 400</td>
+        <td>●●●●○</td>
+        <td>Bormes</td>
+      </tr>
+      <tr>
+        <td class="j">J7</td>
+        <td>Retour → Gare de Toulon</td>
+        <td>~60</td>
+        <td>~400</td>
+        <td>●○○○○</td>
+        <td>Train Toulon–Marseille</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- AVERTISSEMENTS -->
+<!-- J0 -->
+<div class="page">
+  <div class="section-tag">Jour 0</div>
+  <div class="day-header">
+    <div class="day-number">0</div>
+    <div class="day-title-block">
+      <h3>Arrivée à <em>Marseille · Le Panier</em></h3>
+      <div class="day-stats">
+        <div class="stat">Journée de transit · repos · organisation</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="prose">
+    <div style="margin-bottom:1.5rem; border:1px solid var(--ecru); border-radius:2px; overflow:hidden;">
+      <div style="background:var(--nuit); padding:0.6rem 1.25rem;">
+        <span style="font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.2em; color:var(--accent); text-transform:uppercase;">🚆 Voyage réservé</span>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; border-top:1px solid var(--ecru);">
+        <!-- ALLER -->
+        <div style="padding:1.25rem 1.5rem; border-right:1px solid var(--ecru);">
+          <div style="font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; color:var(--olive); text-transform:uppercase; margin-bottom:0.75rem;">Aller · 30 avril</div>
+          <div style="display:flex; align-items:baseline; gap:0.5rem; margin-bottom:0.25rem;">
+            <span style="font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--nuit); line-height:1;">18:23</span>
+            <span style="color:var(--gris); font-size:0.8rem;">Lille Europe</span>
+          </div>
+          <div style="color:var(--gris); font-size:0.8rem; margin:0.3rem 0;">↓ 5h25</div>
+          <div style="display:flex; align-items:baseline; gap:0.5rem; margin-bottom:0.75rem;">
+            <span style="font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--nuit); line-height:1;">23:48</span>
+            <span style="color:var(--gris); font-size:0.8rem;">Marseille Saint-Charles</span>
+          </div>
+          <div style="font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--terre); letter-spacing:0.05em;">TGV INOUI 5124</div>
+        </div>
+        <!-- RETOUR -->
+        <div style="padding:1.25rem 1.5rem;">
+          <div style="font-family:'DM Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; color:var(--olive); text-transform:uppercase; margin-bottom:0.75rem;">Retour · 7 mai</div>
+          <div style="display:flex; align-items:baseline; gap:0.5rem; margin-bottom:0.25rem;">
+            <span style="font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--nuit); line-height:1;">12:12</span>
+            <span style="color:var(--gris); font-size:0.8rem;">Marseille Saint-Charles</span>
+          </div>
+          <div style="color:var(--gris); font-size:0.8rem; margin:0.3rem 0;">↓ 5h08</div>
+          <div style="display:flex; align-items:baseline; gap:0.5rem; margin-bottom:0.75rem;">
+            <span style="font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--nuit); line-height:1;">17:20</span>
+            <span style="color:var(--gris); font-size:0.8rem;">Lille Europe</span>
+          </div>
+          <div style="font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--terre); letter-spacing:0.05em;">TGV INOUI 12566</div>
+        </div>
+      </div>
+
+    </div>
+    <p><strong>Airbnb Le Panier :</strong> Le Panier est le vieux Marseille — rues pavées, ambiance authentique, 10 min à pied de Saint-Charles. Vérifier à la réservation : accès vélo (local ou couloir), et pas de monte-charge impossible avec 3 vélos.</p>
+    <div style="margin: 1.5rem 0;">
+      <div class="airbnb-embed-frame" data-id="32236531" data-view="home" data-hide-price="true" style="width:100%;max-width:500px;height:300px;border:1px solid var(--ecru);border-radius:2px;overflow:hidden;">
+        <a href="https://www.airbnb.fr/rooms/32236531?check_in=2026-04-30&amp;check_out=2026-05-01&amp;guests=1&amp;adults=3&amp;s=66&amp;source=embed_widget">Loft · Marseille · ★4,62 · 1 chambre · 3 lits · 1 salle de bain — Voir sur Airbnb</a>
+        <script async="" src="https://www.airbnb.fr/embeddable/airbnb_jssdk"></script>
+      </div>
+    </div>
+    <p><strong>Soirée :</strong> Le Panier a de bonnes tables — La Mercerie ou La Cantine de Noailles. Vieux-Port à 10 min pour l'apéro. Coucher tôt : J1 est la journée la plus longue du séjour.</p>
+    <p><strong>À faire ce soir :</strong> Commander le taxi-bagages pour demain matin.</p>
+  </div>
+</div>
+
+<!-- J1 -->
+<div class="page">
+  <div class="section-tag">Jour 1 · ~130 km · ~1 200 m D+</div>
+  <div class="day-header">
+    <div class="day-number">1</div>
+    <div class="day-title-block">
+      <h3>Marseille → <em>Bormes-les-Mimosas</em></h3>
+      <div class="day-stats">
+        <div class="stat">Km <span class="stat-val">~130</span></div>
+        <div class="stat">D+ <span class="stat-val">~1 200 m</span></div>
+        <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="route-points">
+    <div class="route-points-label">Tracé</div>
+    <div class="route-flow">
+      Marseille <span class="arr">→</span> Col de la Gineste <span class="arr">→</span> Cassis <span class="arr">→</span> Ceyreste <span class="arr">→</span> Cuges-les-Pins <span class="arr">→</span> Signes <span class="arr">→</span> Belgentier <span class="arr">→</span> Solliès-Pont <span class="arr">→</span> La Londe-les-Maures <span class="arr">→</span> Bormes-les-Mimosas
+    </div>
+  </div>
+
+  <div class="prose">
+    <p><strong>Route de la Gineste (D4a) :</strong> Prendre la D4a depuis le 8e arrondissement de Marseille. Route bien revêtue et très cycliste le matin. Le col à 327m est parfois dans le brouillard matinal en mai — emporter un coupe-vent. Vue plongeante sur les calanques et la mer au sommet. Descente sur Cassis : <strong>attention au virage en épingle au bas de la descente</strong>, zone humide par résurgences karstiques même par temps sec.</p>
+    <p><strong>Cassis :</strong> Premier ravitaillement sérieux. Boulangerie Jouvène sur le cours Baragnon ou terrasse du port. En début mai, le port est tranquille — profiter du calme avant la saison.</p>
+    <p><strong>Ceyreste → Cuges-les-Pins :</strong> Depuis Cassis, remonter par Ceyreste et la D3 vers Cuges-les-Pins. Col à 327m également, route tranquille dans les pinèdes et les restanques, sans aucun trafic. Très belle portion.</p>
+    <p><strong>Signes :</strong> Fontaine et boulangerie sur la place centrale — bon point de ravitaillement eau/nourriture. Village calme, ambiance haute Provence.</p>
+    <p><strong>Belgentier — Gorges du Gapeau :</strong> La descente de Signes sur Belgentier par la D402 est superbe — gorges encaissées, route quasi déserte, ombragée. Quelques passages humides en fond de gorge même en mai. Descendre avec vigilance dans les virages.</p>
+    <p><strong>Solliès-Pont → Hyères :</strong> Plein sud depuis Solliès-Pont. La D98/D12 traverse les vignes et les oliveraies, sans détour par Toulon. Contournement complet de la zone urbaine.</p>
+    <p><strong>Hyères → Bormes :</strong> Éviter la D559 côtière (trafic). Préférer l'intérieur via <strong>La Londe-les-Maures</strong> (D88 puis D98) : 8 km de plus mais routes agréables dans les vignes, aucun camion.</p>
+    <p><strong>Hébergement Bormes :</strong> Dormir dans le village perché si possible — routes étroites mais ambiance incomparable. Prévoir un local vélo sécurisé ou monter les vélos en chambre : les vélos de route sont des cibles.</p>
+  </div>
+
+  <div class="tip-grid">
+    <div class="tip">
+      <span class="tip-icon">🍽️</span>
+      <div class="tip-label">Déjeuner</div>
+      <p>Cassis (port) ou Signes selon le rythme. Cassis est la valeur sûre en termes de choix.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">⚠️</span>
+      <div class="tip-label">Toulon</div>
+      <p>Ce tracé évite totalement Toulon. Ne jamais tenter de traverser le centre en vélo chargé.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🧳</span>
+      <div class="tip-label">Bagages</div>
+      <p>Si taxi commandé la veille, partir léger avec bidon et cuissard. Nuit et lendemain matin à Bormes.</p>
+    </div>
+  </div>
+</div>
+  <div class="komoot-section">
+    <div class="komoot-label">🗺️ Carte Komoot</div>
+  <div class="komoot-section">
+    <div class="komoot-label">📷 Photos du parcours</div>
+    <iframe src="https://www.komoot.com/fr-fr/tour/2852184754/embed?share_token=ayXAgDZVBVGTaPz33w83CiD3sdpRGrxqdKbi9QmL6o5ng22uzm&gallery=1" width="100%" height="800" frameborder="0"></iframe>
+  </div>
+    <iframe src="https://www.komoot.com/fr-fr/tour/2852184754/embed?share_token=ayXAgDZVBVGTaPz33w83CiD3sdpRGrxqdKbi9QmL6o5ng22uzm&profile=1" width="100%" height="700" frameborder="0"></iframe>
+  </div>
+
+<!-- J2 -->
+<div class="page">
+  <div class="section-tag">Jour 2 · ~85 km · ~1 300 m D+</div>
+  <div class="day-header">
+    <div class="day-number">2</div>
+    <div class="day-title-block">
+      <h3>Boucle <em>Cœur des Maures</em></h3>
+      <div class="day-stats">
+        <div class="stat">Km <span class="stat-val">~85</span></div>
+        <div class="stat">D+ <span class="stat-val">~1 300 m</span></div>
+        <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="route-points">
+    <div class="route-points-label">Tracé</div>
+    <div class="route-flow">
+      Bormes <span class="arr">→</span> Col de Caguo-Ven <span class="arr">→</span> Collobrières <span class="arr">→</span> Chartreuse de la Verne <span class="arr">→</span> La Môle <span class="arr">→</span> Bormes
+    </div>
+  </div>
+
+  <div class="prose">
+    <p><strong>Col de Caguo-Ven :</strong> Belle rampe régulière depuis Bormes, route forestière très tranquille. Attention aux sangliers à l'aurore — ils traversent sans prévenir. La forêt de chênes-lièges commence ici — noter les troncs rouges des arbres récemment décortiqués.</p>
+    <p><strong>Collobrières :</strong> Capitale de la châtaigne et du marron glacé. Arrêt obligatoire à la <strong>Confiserie Azuréenne</strong> — marrons glacés, crème de marrons, et produits locaux. Fontaine fiable sur la place du village. <strong>Remplir les bidons ici</strong> — c'est le dernier point d'eau garanti avant la Chartreuse.</p>
+    <p><strong>Chartreuse de la Verne :</strong> Le monastère médiéval est isolé dans la forêt — architecture en serpentine verte et schiste du XIIe, silence absolu. Prévoir 1h sur place. <strong>Fermée le mardi.</strong> Horaires : 11h–17h. Tél. 04 94 43 48 28.</p>
+    <div class="alert alert-olive" style="margin: 1rem 0; color: var(--sable);">
+      <div class="alert-title">🔴 Pneus — accès Chartreuse</div>
+      <p>La D214 est excellente jusqu'à 4 km de la grille, puis <strong>piste gravillonnée</strong>. En 25mm à haute pression : risque de pincement. En 28mm à pression réduite : ça passe. Alternatives : belvédère à 2 km avant la grille (vue sur le monastère dans la forêt, déjà beau), ou pousser à pied 20 min.</p>
+    </div>
+    <p><strong>La D27 — La Verne → La Môle :</strong> Une des plus belles routes des Maures. Sinueuse, sous les chênes-lièges, quasi déserte. La Môle est un minuscule village avec le bistrot Le St-Exupéry — du nom de l'aviateur dont le château est visible de la route.</p>
+  </div>
+
+  <div class="tip-grid">
+    <div class="tip">
+      <span class="tip-icon">🍽️</span>
+      <div class="tip-label">Déjeuner</div>
+      <p>Collobrières — place du village. Plusieurs bonnes adresses en mai avant la foule estivale.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">📅</span>
+      <div class="tip-label">Attention</div>
+      <p>Chartreuse : fermée mardi, ouverte 11h–17h. Thoronet : ouvert tous les jours 10h–12h15 et 14h–16h15.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🌿</span>
+      <div class="tip-label">Début mai</div>
+      <p>Les cistes blancs et roses sont en pleine floraison, les routes sentent le maquis. La forêt est à son meilleur.</p>
+    </div>
+  </div>
+</div>
+  <div class="komoot-section">
+    <div class="komoot-label">🗺️ Carte Komoot</div>
+  <div class="komoot-section">
+    <div class="komoot-label">📷 Photos du parcours</div>
+    <iframe src="https://www.komoot.com/fr-fr/tour/2852216030/embed?share_token=aNqOki3ZDTkWXgSevmfwsAYdtZkYTTjhXQ1EWQe55GnFB6qCQ1&gallery=1" width="100%" height="800" frameborder="0"></iframe>
+  </div>
+    <iframe src="https://www.komoot.com/fr-fr/tour/2852216030/embed?share_token=aNqOki3ZDTkWXgSevmfwsAYdtZkYTTjhXQ1EWQe55GnFB6qCQ1&profile=1" width="100%" height="1160" frameborder="0"></iframe>
+  </div>
+
+<!-- J3 -->
+<div class="page">
+  <div class="section-tag">Jour 3 · ~95 km · ~1 200 m D+</div>
+  <div class="day-header">
+    <div class="day-number">3</div>
+    <div class="day-title-block">
+      <h3>Boucle Corniche &amp; <em>Saint-Tropez</em></h3>
+      <div class="day-stats">
+        <div class="stat">Km <span class="stat-val">~95</span></div>
+        <div class="stat">D+ <span class="stat-val">~1 200 m</span></div>
+        <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="route-points">
+    <div class="route-points-label">Tracé</div>
+    <div class="route-flow">
+      Bormes <span class="arr">→</span> Col du Canadel <span class="arr">→</span> Cavalaire <span class="arr">→</span> Ramatuelle <span class="arr">→</span> Saint-Tropez <span class="arr">→</span> Grimaud <span class="arr">→</span> Col de Gratteloup <span class="arr">→</span> Bormes
+    </div>
+  </div>
+
+  <div class="prose">
+    <p><strong>Col du Canadel :</strong> Vue sur les Îles d'Or (Porquerolles, Port-Cros, Le Levant) absolument spectaculaire — arrêt photo obligatoire au sommet. La descente sur Cavalaire est rapide (40 km/h facilement), attention aux graviers dans les virages.</p>
+    <p><strong>Ramatuelle :</strong> Vignes de Pampelonne, routes du Domaine de Minuty — un détour de 3 km par les routes des vignes avec vue sur la baie vaut le coup si les jambes le permettent.</p>
+    <p><strong>Saint-Tropez :</strong> En début mai, le port est encore presque calme — la saison démarre mi-mai. Profiter du village sans la foule de juillet. Laisser les vélos aux Lices ou à la capitainerie (antivol U + câble indispensable). Déjeuner : <strong>La Tarte Tropézienne</strong> place des Lices pour une pause authentique (fondée en 1955, l'originale), ou terrasse sur le port. La citadelle mérite 45 min — vue à 360° sur le golfe.</p>
+    <p><strong>Retour via Grimaud :</strong> Le Col de Gratteloup (181m) depuis le Plan de la Tour est une route tranquille sous les châtaigniers. <strong>Grimaud</strong> est un beau village médiéval souvent ignoré — café en terrasse si les jambes tiennent.</p>
+  </div>
+
+  <div class="tip-grid">
+    <div class="tip">
+      <span class="tip-icon">⏰</span>
+      <div class="tip-label">Timing Saint-Tropez</div>
+      <p>En mai, arriver avant 11h est suffisant. La foule estivale n'est pas encore là — profiter.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🍽️</span>
+      <div class="tip-label">Déjeuner</div>
+      <p>Saint-Tropez port ou place des Lices. Sénéquier pour le café avec vue, Tarte Tropézienne pour déjeuner léger.</p>
+    </div>
+  </div>
+</div>
+  <div class="komoot-section">
+    <div class="komoot-label">🗺️ Carte Komoot</div>
+  <div class="komoot-section">
+    <div class="komoot-label">📷 Photos du parcours</div>
+    <iframe src="https://www.komoot.com/fr-fr/tour/2852255606/embed?share_token=afCNt7NB88hELhU1JEntj3qZDBWP6LmywZRpkr4rLHOTmSDnq2&gallery=1" width="100%" height="800" frameborder="0"></iframe>
+  </div>
+    <iframe src="https://www.komoot.com/fr-fr/tour/2852255606/embed?share_token=afCNt7NB88hELhU1JEntj3qZDBWP6LmywZRpkr4rLHOTmSDnq2&profile=1" width="100%" height="1160" frameborder="0"></iframe>
+  </div>
+
+<!-- J4 -->
+<div class="page">
+  <div class="section-tag">Jour 4 · ~75 km · ~700 m D+</div>
+  <div class="day-header">
+    <div class="day-number">4</div>
+    <div class="day-title-block">
+      <h3>Boucle <em>Presqu'île de Giens</em></h3>
+      <div class="day-stats">
+        <div class="stat">Km <span class="stat-val">~75</span></div>
+        <div class="stat">D+ <span class="stat-val">~700 m</span></div>
+        <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="route-points">
+    <div class="route-points-label">Tracé</div>
+    <div class="route-flow">
+      Bormes <span class="arr">→</span> Hyères <span class="arr">→</span> Tombolo ouest <span class="arr">→</span> Giens <span class="arr">→</span> La Tour Fondue <span class="arr">→</span> (Porquerolles) <span class="arr">→</span> Tombolo est <span class="arr">→</span> Le Lavandou <span class="arr">→</span> Bormes
+    </div>
+  </div>
+
+  <div class="prose">
+    <p><strong>Journée récupération.</strong> Profiter, ne pas forcer. Les jambes vont en avoir besoin pour J0.</p>
+    <p><strong>Hyères vieille ville :</strong> Souvent zappée par les cyclistes. La place Massillon et la Villa Noailles (architecture moderne des années 20, expositions en mai) valent le détour. Bonne boulangerie rue Massillon.</p>
+    <p><strong>Tombolo ouest :</strong> La route qui longe le cordon littoral est plate, sans ombre, exposée au vent de mer. En mai la température est parfaite — en juillet ce serait une fournaise. Visuellement irréel — la mer des deux côtés à 30 mètres.</p>
+    <p><strong>Ferry Porquerolles (fortement recommandé) :</strong> La Tour Fondue → Porquerolles, 15 min, ~20€ aller-retour par personne + vélo. En mai, les billets sont disponibles sans réserver la veille — mais vérifier sur <strong>bateaux-de-porquerolles.com</strong>. Sur l'île : aucune voiture, pistes cyclables, plages de sable blanc, Fort Sainte-Agathe. Prévoir 3–4h sur place. C'est l'une des plus belles îles de Méditerranée.</p>
+    <p><strong>Retour Le Lavandou → Bormes :</strong> La D559 bord de mer peut être animée en fin de journée. Alternative plus calme : D41 par Aiguebelle.</p>
+  </div>
+
+  <div class="tip-grid">
+    <div class="tip">
+      <span class="tip-icon">🚢</span>
+      <div class="tip-label">Ferry Porquerolles</div>
+      <p>Option à ne pas manquer. En mai, pas de queue. Partir tôt de Bormes pour avoir 3–4h sur l'île.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🦩</span>
+      <div class="tip-label">Flamants roses</div>
+      <p>Les salins d'Hyères accueillent des flamants roses en mai — à observer en passant sur le tombolo.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🍽️</span>
+      <div class="tip-label">Déjeuner</div>
+      <p>Giens village ou sur l'île de Porquerolles si vous y allez. Éviter La Tour Fondue (touriste, cher).</p>
+    </div>
+  </div>
+</div>
+  <div class="komoot-section">
+    <div class="komoot-label">🗺️ Carte Komoot</div>
+  <div class="komoot-section">
+    <div class="komoot-label">📷 Photos du parcours</div>
+    <iframe src="https://www.komoot.com/fr-fr/tour/2852976129/embed?share_token=aJXq4izIbwEJI47cgcJF7Ok3f766GtFdkFum14QeIqVsHxO4H8&gallery=1" width="100%" height="800" frameborder="0"></iframe>
+  </div>
+    <iframe src="https://www.komoot.com/fr-fr/tour/2852976129/embed?share_token=aJXq4izIbwEJI47cgcJF7Ok3f766GtFdkFum14QeIqVsHxO4H8&profile=1" width="100%" height="1160" frameborder="0"></iframe>
+  </div>
+
+<!-- J5 -->
+<div class="page">
+  <div class="section-tag">Jour 5 · ~100 km · ~1 400 m D+ · Journée engagée</div>
+  <div class="day-header">
+    <div class="day-number">5</div>
+    <div class="day-title-block">
+      <h3>Bormes → <em>Agriturismo Haut-Var</em></h3>
+      <div class="day-stats">
+        <div class="stat">Km <span class="stat-val">~100</span></div>
+        <div class="stat">D+ <span class="stat-val">~1 400 m</span></div>
+        <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert" style="margin-bottom:1.5rem;">
+    <div class="alert-title">⚠️ Journée la plus sérieuse — départ à 6h30</div>
+    <p>Trois ascensions distinctes avec peu de plat entre elles. <strong>Gérer le rythme dès le premier col.</strong> Prévoir des gels ou barres pour la montée finale vers La Garde-Freinet.</p>
+  </div>
+
+  <div class="route-points">
+    <div class="route-points-label">Tracé</div>
+    <div class="route-flow">
+      Bormes <span class="arr">→</span> Col de Caguo-Ven <span class="arr">→</span> Collobrières <span class="arr">→</span> Les Mayons <span class="arr">→</span> La Garde-Freinet <span class="arr">→</span> Gonfaron <span class="arr">→</span> Agriturismo
+    </div>
+  </div>
+
+  <div class="prose">
+    <p><strong>Col de Caguo-Ven :</strong> Deuxième passage cette semaine — vous connaissez. Partir reposé, gérer l'effort dès ici.</p>
+    <p><strong>Collobrières :</strong> Deuxième passage aussi. Pas besoin de s'y attarder — ravitaillement eau et en route.</p>
+    <p><strong>La Garde-Freinet :</strong> Village sarrasin sur un éperon rocheux, très beau. C'est ici que se fait la pause déjeuner. <strong>L'Auberge Sarrasine</strong> ou le Café de France sur la place principale. La montée depuis Le Plan de la Tour par la D558 est l'ascension la plus régulière des Maures — 7 km à 5–6%, bonne route.</p>
+    <p><strong>Gonfaron :</strong> Village connu pour son Centre de soins pour la tortue d'Hermann (espèce protégée des Maures). On file vers l'agriturismo.</p>
+    <p><strong>Agriturismo :</strong> Le secteur Gonfaron / Le Luc / Les Mayons compte plusieurs domaines viticoles avec chambres. Chercher sur <strong>Agriturismo.it</strong>, Gîtes de France Var ou directement le <strong>Domaine de la Lauzade</strong> (Le Luc). Appeler pour confirmer l'heure d'arrivée — ne pas se pointer sans prévenir. Si le dîner à la ferme est proposé : ne pas refuser.</p>
+  </div>
+
+  <div class="tip-grid">
+    <div class="tip">
+      <span class="tip-icon">🍷</span>
+      <div class="tip-label">Vin local</div>
+      <p>Le Haut-Var produit d'excellents Côtes de Provence. Dîner à la ferme avec le vin du domaine — c'est le moment.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🍽️</span>
+      <div class="tip-label">Déjeuner</div>
+      <p>La Garde-Freinet — place principale. Pas de saut de repas sur cette journée.</p>
+    </div>
+  </div>
+</div>
+  <div class="komoot-section">
+    <div class="komoot-label">🗺️ Carte Komoot</div>
+  <div class="komoot-section">
+    <div class="komoot-label">📷 Photos du parcours</div>
+    <iframe src="https://www.komoot.com/fr-fr/tour/2852982184/embed?share_token=aSkrRmh72Iid3kDqO2tnHxNVuqlRJnW8gZXS2XOniKCT8CAf5W&gallery=1" width="100%" height="800" frameborder="0"></iframe>
+  </div>
+    <iframe src="https://www.komoot.com/fr-fr/tour/2852982184/embed?share_token=aSkrRmh72Iid3kDqO2tnHxNVuqlRJnW8gZXS2XOniKCT8CAf5W&profile=1" width="100%" height="1160" frameborder="0"></iframe>
+  </div>
+
+<!-- J6 -->
+<div class="page">
+  <div class="section-tag">Jour 6 · ~130 km · ~1 400 m D+ · Journée longue</div>
+  <div class="day-header">
+    <div class="day-number">6</div>
+    <div class="day-title-block">
+      <h3>Thoronet &amp; retour <em>Bormes</em></h3>
+      <div class="day-stats">
+        <div class="stat">Km <span class="stat-val">~130</span></div>
+        <div class="stat">D+ <span class="stat-val">~1 400 m</span></div>
+        <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="route-points">
+    <div class="route-points-label">Tracé</div>
+    <div class="route-flow">
+      Agriturismo <span class="arr">→</span> Cabasse <span class="arr">→</span> Abbaye du Thoronet <span class="arr">→</span> Lorgues <span class="arr">→</span> Les Arcs-sur-Argens <span class="arr">→</span> Vidauban <span class="arr">→</span> Le Cannet-des-Maures <span class="arr">→</span> La Garde-Freinet <span class="arr">→</span> Col de Gratteloup <span class="arr">→</span> Bormes
+    </div>
+  </div>
+
+  <div class="alert" style="margin-bottom:1.5rem;">
+    <div class="alert-title">⚠️ Journée longue — départ à 7h impératif</div>
+    <p>La boucle aller (Thoronet, Lorgues, Les Arcs) représente déjà ~88km. Le retour via La Garde-Freinet ajoute ~40km et une dernière montée sérieuse. <strong>Ne pas traîner à l'abbaye au-delà de 11h30</strong> pour garder de la marge.</p>
+  </div>
+
+  <div class="prose">
+    <p><strong>Abbaye du Thoronet :</strong> Joyau roman cistercien du XIIe siècle — architecture d'une austérité absolue, acoustique légendaire, silence de pierre. Réserver sa visite sur <strong>monuments-nationaux.fr</strong>. Ouverte <strong>tous les jours</strong> sauf 1er janvier, 1er mai et 25 décembre — pas de fermeture le mardi. Horaires : 10h–12h15 et 14h–16h15 (fermé le midi). Arriver à l'ouverture avant les groupes — la fermeture à 16h15 laisse peu de temps en fin de journée. Tél. 04 94 60 43 90. Si un concert de musique ancienne est programmé pendant votre séjour : occasion rare à saisir.</p>
+    <p><strong>Route Cabasse → Thoronet (D17) :</strong> Très belle route dans les collines boisées, peu fréquentée, terrain vallonné.</p>
+    <p><strong>Lorgues :</strong> Place de la mairie sous les platanes séculaires — déjeuner ici. <strong>Le Jardin de Benjamin</strong> pour de la gastronomie (réserver), ou plus simplement Le Cloître pour une cuisine régionale sous les platanes. Lorgues est au cœur du pays de la truffe noire et dans le vignoble Côtes de Provence — épiceries locales avec vente directe.</p>
+    <p><strong>Les Arcs-sur-Argens :</strong> Joli village médiéval (le Parage), château du XIIe. La gare des Arcs / Draguignan est sur la ligne Marseille-Nice — point de repli utile si une jambe flanche.</p>
+    <p><strong>Retour vers Bormes — Vidauban → Le Cannet-des-Maures → La Garde-Freinet :</strong> Depuis Vidauban, remonter plein ouest vers Le Cannet-des-Maures, puis la D558 vers La Garde-Freinet. C'est la dernière montée de la semaine — 7 km à 5–6% réguliers. Vue sur les Maures depuis le village. Descente plein sud vers Bormes — retour par La Croix-Valmer ou le littoral selon l'état des jambes.</p>
+    <p>Arrivée à Bormes en fin de journée — dernière nuit dans le village perché.</p>
+  </div>
+
+  <div class="tip-grid">
+    <div class="tip">
+      <span class="tip-icon">📅</span>
+      <div class="tip-label">Fermeture</div>
+      <p>Abbaye ouverte tous les jours sauf jours fériés (1er jan, 1er mai, 25 déc). Aucune contrainte de jour de semaine.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🍽️</span>
+      <div class="tip-label">Déjeuner</div>
+      <p>Lorgues, place de la mairie. Éviter de déjeuner à l'abbaye — casse-croûte sur place si besoin mais les restaurants de Lorgues sont bien meilleurs.</p>
+    </div>
+  </div>
+</div>
+  <div class="komoot-section">
+    <div class="komoot-label">🗺️ Carte Komoot</div>
+  <div class="komoot-section">
+    <div class="komoot-label">📷 Photos du parcours</div>
+    <iframe src="https://www.komoot.com/fr-fr/tour/2853000853/embed?share_token=aIJ0xez5Laks7QRCUlIc2rNievMjbnPvxX8GdY1zmtHdzXtHhE&gallery=1" width="100%" height="800" frameborder="0"></iframe>
+  </div>
+    <iframe src="https://www.komoot.com/fr-fr/tour/2853000853/embed?share_token=aIJ0xez5Laks7QRCUlIc2rNievMjbnPvxX8GdY1zmtHdzXtHhE&profile=1" width="100%" height="1160" frameborder="0"></iframe>
+  </div>
+
+<!-- J7 -->
+<div class="page">
+  <div class="section-tag">Jour 7 · ~60 km · ~400 m D+</div>
+  <div class="day-header">
+    <div class="day-number">7</div>
+    <div class="day-title-block">
+      <h3>Bormes → <em>Gare de Toulon</em></h3>
+      <div class="day-stats">
+        <div class="stat">Km <span class="stat-val">~60</span></div>
+        <div class="stat">D+ <span class="stat-val">~400 m</span></div>
+        <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="route-points">
+    <div class="route-points-label">Tracé</div>
+    <div class="route-flow">
+      Bormes <span class="arr">→</span> Le Lavandou <span class="arr">→</span> Hyères <span class="arr">→</span> Carqueiranne <span class="arr">→</span> Le Pradet <span class="arr">→</span> Gare de Toulon
+    </div>
+  </div>
+
+  <div class="prose">
+    <p><strong>Journée tranquille — la plus courte de la semaine.</strong> On descend directement de Bormes vers le littoral. Profiter du café dans le village perché une dernière fois avant de partir.</p>
+    <p>Descente vers Le Lavandou, puis la D559 littorale vers Hyères. En mai le trafic est encore raisonnable sur cet axe. Alternative intérieure si besoin : D41 par Aiguebelle.</p>
+    <p><strong>Carqueiranne :</strong> Si le train est en milieu de journée, la plage de Carqueiranne est agréable et peu fréquentée — bon endroit pour une pause finale avant Toulon.</p>
+    <p><strong>Gare de Toulon :</strong> Aucune consigne pour les vélos — arriver avec tout le matériel. TER Toulon → Marseille : 41–48 min, vélos <strong>non démontés sur certains TER</strong> (marqués "vélo" sur SNCF Connect). Réserver les emplacements vélo dès maintenant. Éviter les heures de pointe.</p>
+  </div>
+
+  <div class="alert alert-olive">
+    <div class="alert-title">🚂 TER vélos Toulon → Marseille — à faire maintenant</div>
+    <p>Les emplacements vélo (2 à 4 par rame) se réservent sur SNCF Connect — section "ajouter un bagage" → "vélo non démonté". En mai ce n'est pas saturé mais autant sécuriser. Choisir un TER hors pointe, idéalement entre 10h et 15h.</p>
+  </div>
+</div>
+
+  <div class="komoot-section">
+    <div class="komoot-label">🗺️ Carte Komoot</div>
+  <div class="komoot-section">
+    <div class="komoot-label">📷 Photos du parcours</div>
+    <iframe src="https://www.komoot.com/fr-fr/tour/2853002822/embed?share_token=avZQQJ3s7JNSePcywtB1l26ZM5pskA6pRAF6hyZ0lia2MoTtEd&gallery=1" width="100%" height="800" frameborder="0"></iframe>
+  </div>
+    <iframe src="https://www.komoot.com/fr-fr/tour/2853002822/embed?share_token=avZQQJ3s7JNSePcywtB1l26ZM5pskA6pRAF6hyZ0lia2MoTtEd&profile=1" width="100%" height="700" frameborder="0"></iframe>
+  </div>
+
+<!-- INFOS PRATIQUES -->
+<div class="page">
+  <div class="section-tag">Infos pratiques</div>
+  <h2>Matériel &amp; <em>logistique</em></h2>
+
+  <div class="pratique-grid">
+    <div class="pratique-item">
+      <span class="pi-icon">🚲</span>
+      <div class="pi-label">Vélo</div>
+      <p>Vélo de route, pneus <strong>28mm minimum</strong> pour la piste de la Chartreuse de la Verne. 25mm si vous acceptez de ne pas aller jusqu'au monastère.</p>
+    </div>
+    <div class="pratique-item">
+      <span class="pi-icon">💧</span>
+      <div class="pi-label">Eau</div>
+      <p>2 bidons minimum. Remplir à chaque village sur J0, J0, J0 — la forêt des Maures a très peu de points d'eau.</p>
+    </div>
+    <div class="pratique-item">
+      <span class="pi-icon">🔧</span>
+      <div class="pi-label">Réparation sur route</div>
+      <p>2 chambres à air + pompe par cycliste. CO2 en option. Zones isolées sur J2 et J5 — le SAV est loin.</p>
+    </div>
+    <div class="pratique-item">
+      <span class="pi-icon">🛠️</span>
+      <div class="pi-label">Ateliers vélo — secteur Bormes</div>
+      <p><strong>Dépanacycles</strong> à Bormes-les-Mimosas. <strong>Blue Bikes</strong> et <strong>Mistral Bike</strong> au Lavandou — bien équipés vélo de route. Appeler avant de s'y rendre en saison.</p>
+    </div>
+    <div class="pratique-item">
+      <span class="pi-icon">🛏️</span>
+      <div class="pi-label">Bormes</div>
+      <p>Réserver tôt — les bons hôtels du village perché partent vite même en mai. Demander local vélo sécurisé.</p>
+    </div>
+    <div class="pratique-item">
+      <span class="pi-icon">🌿</span>
+      <div class="pi-label">Agriturismo</div>
+      <p>Secteur Gonfaron / Le Luc / Les Mayons. Agriturismo.it, Gîtes de France Var, ou Domaine de la Lauzade (Le Luc). Appeler pour confirmer horaire d'arrivée.</p>
+    </div>
+    <div class="pratique-item">
+      <span class="pi-icon">📱</span>
+      <div class="pi-label">Navigation</div>
+      <p>GPX à importer dans Komoot ou Garmin Connect. Komoot gère bien les routes de montagne du Var.</p>
+    </div>
+    <div class="pratique-item">
+      <span class="pi-icon">☀️</span>
+      <div class="pi-label">Période</div>
+      <p>Début mai : routes désertes, 15–22°C, cistes et mimosas en fleurs, pas de DFCI. Période idéale.</p>
+    </div>
+    <div class="pratique-item">
+      <span class="pi-icon">🧳</span>
+      <div class="pi-label">Bagages</div>
+      <p>Taxi privé : 110–140€ (~40€/pers). <em>Luggage Mule</em> ou <em>Send My Bag</em> : 25–40€/sac. Chronopost point relais : ~15€/colis. Dans tous les cas, prévenir l'hôtel de Bormes de la livraison.</p>
+    </div>
+    <div class="pratique-item">
+      <span class="pi-icon">🚢</span>
+      <div class="pi-label">Porquerolles</div>
+      <p>Ferry La Tour Fondue → Porquerolles. ~20€ AR + vélo. En mai, pas besoin de réserver la veille mais vérifier sur bateaux-de-porquerolles.com.</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <h2 style="margin-top:1rem;">Récap <em>fermetures</em></h2>
+  <table class="recap-table" style="margin-top:1.5rem;">
+    <thead>
+      <tr>
+        <th>Site</th>
+        <th>Jour concerné</th>
+        <th>Fermeture</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Chartreuse de la Verne</td>
+        <td class="j">J2</td>
+        <td>Mardi · Horaires 11h–17h</td>
+        <td>Ne pas placer J2 un mardi</td>
+      </tr>
+      <tr>
+        <td>Abbaye du Thoronet</td>
+        <td class="j">J6</td>
+        <td>Mardi + 1er janv/mai/nov</td>
+        <td>Ne pas placer J0 un mardi — vérifier le 1er mai</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- MATÉRIEL -->
+<div class="page">
+  <div class="section-tag">Préparation</div>
+  <h2>Liste de <em>matériel</em></h2>
+  <div class="subtitle">Pour 8 jours · niveau cyclosportif · Massif des Maures</div>
+
+  <div class="tip-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); margin-top:1.5rem;">
+
+    <div class="tip">
+      <span class="tip-icon">🚲</span>
+      <div class="tip-label">Vélo</div>
+      <p><strong>Pneus 28–30mm</strong> minimum (piste Chartreuse de la Verne). Cassette 32 ou 34 dents recommandée — les Maures ont des passages à 10–12% sur plusieurs km. Chaîne neuve avant le départ. Frein à disque ou patins en bon état.</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">⚙️</span>
+      <div class="tip-label">Développement</div>
+      <p>Braquet minimum conseillé : <strong>34×30 ou 34×32</strong>. Sur 8 jours avec 6 600m D+, les petits braquets ne sont pas une faiblesse — c'est de la gestion d'effort.</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">🧰</span>
+      <div class="tip-label">Outillage</div>
+      <p>Par cycliste : 2 chambres à air, 1 pompe à aiguille, 1 multi-outil, 1 dérive-chaîne, 2 maillons rapides, 3 patchs, 1 CO2 (option). Par groupe : 1 mini-pompe à pied.</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">👕</span>
+      <div class="tip-label">Textile</div>
+      <p>3 cuissards, 3 maillots, 1 gilet coupe-vent (descentes forestières à l'aurore), 1 manchons, 1 paire de gants longs, 2 paires de chaussettes. Sous-vêtement thermique léger pour les départs à 6h30.</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">💧</span>
+      <div class="tip-label">Hydratation</div>
+      <p>2 bidons par cycliste minimum. Prévoir pastilles de sels minéraux pour J2, J5 et J6. Sur les journées massif, 1 poche à eau de secours (500ml) dans la poche de maillot n'est pas du luxe.</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">🔆</span>
+      <div class="tip-label">Éclairage</div>
+      <p>Feux avant + arrière — même en plein été. Les routes forestières (J2, J5) ont des tunnels végétaux sombres le matin. Obligatoire légalement si départ avant le lever du soleil.</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">🧴</span>
+      <div class="tip-label">Soin & hygiène</div>
+      <p>Crème solaire SPF50 (J3 tombolo, J4 corniche). Crème chamois en quantité. Baume à lèvres. Antifongique si tendance mycose. Bandages élastiques Elastoplast (petits incidents).</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">📱</span>
+      <div class="tip-label">Navigation & sécurité</div>
+      <p>GPS Garmin ou smartphone avec Komoot offline. Batterie externe 10 000 mAh. Numéros utiles enregistrés : Dépanacycles Bormes, Blue Bikes Lavandou, taxis locaux, SAMU 15. Couverture réseau faible dans les Maures — précharger les cartes hors-ligne.</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">🏥</span>
+      <div class="tip-label">Pharmacie légère</div>
+      <p>Paracétamol, ibuprofène, Compeed anti-ampoules, sérum physiologique (yeux/plaies), pince à épiler (épines, tiques), crème antihistaminique (chenilles processionnaires en mai dans les pins).</p>
+    </div>
+
+    <div class="tip">
+      <span class="tip-icon">📋</span>
+      <div class="tip-label">Documents</div>
+      <p>Carte vitale + attestation mutuelle. Assurance vélo (vol + casse). Numéro de série des vélos photographié. Carte bleue internationale. Contact hôtel Bormes avec confirmation de garde des bagages.</p>
+    </div>
+
+  </div>
+
+  <div class="alert alert-olive" style="margin-top:2rem;">
+    <div class="alert-title">⚠️ Chenilles processionnaires — début mai</div>
+    <p>Les pins du massif des Maures sont infestés de chenilles processionnaires en mars-avril, avec des nids encore présents début mai. Urticantes et dangereuses pour les chiens. Sur les routes forestières, ne pas toucher les fils de soie au sol, et éviter de poser le vélo contre les pins. En cas de contact cutané : rincer abondamment à l'eau froide, antihistaminique.</p>
+  </div>
+</div>
+
+<div class="page">
+  <div class="section-tag">À lire en premier</div>
+  <h2>Points de vigilance<br><em>transversaux</em></h2>
+
+  <div class="alert alert-blue" style="margin-top:2rem;">
+    <div class="alert-title">🔥 DFCI — Fermetures massif des Maures</div>
+    <p>En début mai, les arrêtés de fermeture DFCI ne sont généralement pas encore actifs (ils débutent mi-juin). Mais les conditions peuvent varier selon les années. Vérifier chaque matin sur <strong>alertes-risques.com</strong> ou la préfecture du Var si un épisode de vent fort est annoncé. En cas de fermeture J0, J0 ou J0 : décaler le programme, ne jamais passer outre — amendes importantes et danger réel.</p>
+  </div>
+
+  <div class="alert">
+    <div class="alert-title">🧳 Logistique bagages J0 → J1</div>
+    <p>130 km avec 1 200m D+ le premier jour, c'est costaud sans sacs. Solution : confier les bagages à un taxi depuis Marseille le matin de J1 — il récupère les sacs à l'Airbnb et les dépose à l'hôtel de Bormes pendant que vous pédalez. <strong>Compter 110–140€ (~40€/pers)</strong>. L'hôtel garde les sacs jusqu'à votre arrivée. Alternatives : <em>Luggage Mule</em> ou <em>Send My Bag</em> (25–40€/sac), ou Chronopost point relais (~15€/colis).</p>
+  </div>
+
+  <div class="tip-grid">
+    <div class="tip">
+      <span class="tip-icon">💧</span>
+      <div class="tip-label">Eau — J0, J0, J0</div>
+      <p>Certains cols des Maures n'ont aucune source sur 30–40 km. Remplir impérativement à chaque village. 2 bidons minimum.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🐗</span>
+      <div class="tip-label">Sangliers</div>
+      <p>Traversées fréquentes à l'aurore sur les routes forestières — J0 particulièrement. Rouler à vitesse modérée dans les virages sans visibilité.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🔧</span>
+      <div class="tip-label">Crevaisons</div>
+      <p>2 chambres à air + pompe par cycliste minimum. Zones isolées sur J0 et J0 — le SAV est loin.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">📅</span>
+      <div class="tip-label">Fermetures</div>
+      <p>Chartreuse de la Verne : <strong>fermée le mardi</strong>, ouverte 11h–17h (tél. 04 94 43 48 28). Abbaye du Thoronet : <strong>ouverte tous les jours</strong> sauf jours fériés, 10h–12h15 et 14h–16h15 — fermeture à 16h15, ne pas arriver trop tard (tél. 04 94 60 43 90).</p>
+    </div>
+  </div>
+</div>
+
+
+<footer>
+  <strong>Semaine Vélo · Massif des Maures</strong> &nbsp;·&nbsp; Début mai &nbsp;·&nbsp; 3 cyclistes &nbsp;·&nbsp; ~560 km · ~6 600 m D+<br><br>
+  Topo non contractuel · Vérifier les fermetures DFCI chaque matin sur alertes-risques.com
+</footer>
+
+</body>
+</html>
