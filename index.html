@@ -465,6 +465,138 @@
     display: block;
   }
 
+
+  .peyrassol-photos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 1.25rem 0;
+  }
+  .peyrassol-photos img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 2px;
+    display: block;
+  }
+  .peyrassol-block {
+    background: white;
+    border: 1px solid var(--ecru);
+    padding: 1.25rem 1.5rem;
+    margin-top: 1.5rem;
+    border-radius: 2px;
+  }
+  .peyrassol-block .pb-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--olive);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .peyrassol-block h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: var(--nuit);
+  }
+  .peyrassol-block p { font-size: 0.88rem; line-height: 1.65; color: #3a3a38; margin-bottom: 0.5rem; }
+  .peyrassol-block a.pb-btn {
+    display: inline-block;
+    margin-top: 0.75rem;
+    background: var(--nuit);
+    color: var(--sable);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    padding: 0.5rem 1.1rem;
+    text-decoration: none;
+    border-radius: 1px;
+  }
+  .peyrassol-block .star-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.5rem;
+    border-radius: 1px;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
+  @media (max-width: 640px) {
+    .peyrassol-photos { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    /* Cover */
+    .cover {
+      padding: 2rem 1.5rem;
+      min-height: 80vh;
+    }
+    .cover h1 { font-size: 2.8rem; }
+    .cover-sub { font-size: 1rem; margin-bottom: 2rem; }
+    .cover-meta { gap: 1.2rem; }
+    .cover-meta-item .value { font-size: 0.95rem; }
+    .cover-dots { display: none; }
+
+    /* Pages */
+    .page { padding: 2.5rem 1.2rem; }
+
+    /* Headings */
+    h2 { font-size: 1.6rem; }
+
+    /* Day header */
+    .day-header {
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+    }
+    .day-number {
+      width: 60px;
+      height: 60px;
+      font-size: 2.8rem;
+    }
+    .day-title-block h3 { font-size: 1.2rem; }
+    .day-stats { gap: 0.75rem; }
+    .stat { font-size: 0.7rem; }
+
+    /* Route points */
+    .route-flow { font-size: 0.8rem; gap: 0.3rem; }
+
+    /* Grids → single column */
+    .tip-grid { grid-template-columns: 1fr; }
+    .pratique-grid { grid-template-columns: 1fr; }
+
+    /* Table — horizontal scroll */
+    .recap-table { font-size: 0.78rem; }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+    /* Alerts */
+    .alert { padding: 1.1rem 1.2rem; }
+    .alert p { font-size: 0.85rem; }
+
+    /* Train card — stack vertically */
+    div[style*="grid-template-columns:1fr 1fr"] {
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    div[style*="border-right:1px solid"] {
+      border-right: none !important;
+      border-bottom: 1px solid var(--ecru) !important;
+    }
+
+    /* Komoot iframes — reduce height on mobile */
+    .komoot-section iframe { height: 400px !important; }
+
+    /* Airbnb embed */
+    .airbnb-embed-frame { max-width: 100% !important; height: 250px !important; }
+
+    /* Footer */
+    footer { padding: 2rem 1rem; font-size: 0.65rem; }
+  }
+
   @media print {
     .cover { min-height: auto; padding: 3rem; }
     .page { padding: 3rem 2rem; }
@@ -495,11 +627,11 @@
     </div>
     <div class="cover-meta-item">
       <div class="label">Distance</div>
-      <div class="value">~560 km</div>
+      <div class="value">~600 km</div>
     </div>
     <div class="cover-meta-item">
       <div class="label">Dénivelé</div>
-      <div class="value">~6 600 m D+</div>
+      <div class="value">~7 250 m D+</div>
     </div>
     <div class="cover-meta-item">
       <div class="label">Cyclistes</div>
@@ -541,7 +673,7 @@
       </tr>
       <tr>
         <td class="j">J1</td>
-        <td>Marseille → Bormes <span class="badge info">Transfert</span></td>
+        <td>J1 — Marseille → Bormes-les-Mimosas</td>
         <td>~130</td>
         <td>~1 200</td>
         <td>●●●○○</td>
@@ -549,7 +681,7 @@
       </tr>
       <tr>
         <td class="j">J2</td>
-        <td>Boucle Cœur des Maures</td>
+        <td>J2 — Cœur du Massif des Maures</td>
         <td>~85</td>
         <td>~1 300</td>
         <td>●●●●○</td>
@@ -565,7 +697,7 @@
       </tr>
       <tr>
         <td class="j">J4</td>
-        <td>Boucle Presqu'île de Giens</td>
+        <td>J4 — Giens · Porquerolles · Brégançon</td>
         <td>~75</td>
         <td>~700</td>
         <td>●●○○○</td>
@@ -573,23 +705,23 @@
       </tr>
       <tr>
         <td class="j">J5</td>
-        <td>Bormes → Agriturismo Haut-Var <span class="badge warning">Engagement</span></td>
-        <td>~100</td>
-        <td>~1 400</td>
-        <td>●●●●●</td>
-        <td>Agriturismo</td>
+        <td>J5 — Restau étoilé · La Rouvière</td>
+        <td>~75</td>
+        <td>~1 000</td>
+        <td>●●●●○</td>
+        <td>La Rouvière · Peyrassol</td>
       </tr>
       <tr>
         <td class="j">J6</td>
-        <td>Thoronet · retour Bormes <span class="badge warning">Long</span></td>
-        <td>~130</td>
-        <td>~1 400</td>
-        <td>●●●●○</td>
+        <td>J6 — Boucle nord · TER → Hyères</td>
+        <td>libre</td>
+        <td>libre</td>
+        <td>●●●○○</td>
         <td>Bormes</td>
       </tr>
       <tr>
         <td class="j">J7</td>
-        <td>Retour → Gare de Toulon</td>
+        <td>J7 — Bormes → Gare de Toulon</td>
         <td>~60</td>
         <td>~400</td>
         <td>●○○○○</td>
@@ -664,14 +796,14 @@
 
 <!-- J1 -->
 <div class="page">
-  <div class="section-tag">Jour 1 · ~130 km · ~1 200 m D+</div>
+  <div class="section-tag">Jour 1 · 113 km · 1 350 m D+ · J1 de Marseille à Bormes-les-Mimosas</div>
   <div class="day-header">
     <div class="day-number">1</div>
     <div class="day-title-block">
-      <h3>Marseille → <em>Bormes-les-Mimosas</em></h3>
+      <h3>J1 — Marseille → <em>Bormes-les-Mimosas</em></h3>
       <div class="day-stats">
-        <div class="stat">Km <span class="stat-val">~130</span></div>
-        <div class="stat">D+ <span class="stat-val">~1 200 m</span></div>
+        <div class="stat">Km <span class="stat-val">113</span></div>
+        <div class="stat">D+ <span class="stat-val">1 350 m</span></div>
         <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div></div></div>
       </div>
     </div>
@@ -724,14 +856,14 @@
 
 <!-- J2 -->
 <div class="page">
-  <div class="section-tag">Jour 2 · ~85 km · ~1 300 m D+</div>
+  <div class="section-tag">Jour 2 · 124 km · 2 080 m D+ · J2 Cœur du Massif des Maures</div>
   <div class="day-header">
     <div class="day-number">2</div>
     <div class="day-title-block">
-      <h3>Boucle <em>Cœur des Maures</em></h3>
+      <h3>J2 — <em>Cœur du Massif des Maures</em></h3>
       <div class="day-stats">
-        <div class="stat">Km <span class="stat-val">~85</span></div>
-        <div class="stat">D+ <span class="stat-val">~1 300 m</span></div>
+        <div class="stat">Km <span class="stat-val">124</span></div>
+        <div class="stat">D+ <span class="stat-val">2 080 m</span></div>
         <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
       </div>
     </div>
@@ -784,14 +916,14 @@
 
 <!-- J3 -->
 <div class="page">
-  <div class="section-tag">Jour 3 · ~95 km · ~1 200 m D+</div>
+  <div class="section-tag">Jour 3 · 90,3 km · 1 030 m D+ · J3 Presqu'île de Saint-Tropez</div>
   <div class="day-header">
     <div class="day-number">3</div>
     <div class="day-title-block">
-      <h3>Boucle Corniche &amp; <em>Saint-Tropez</em></h3>
+      <h3>J3 — <em>Presqu'île de Saint-Tropez</em></h3>
       <div class="day-stats">
-        <div class="stat">Km <span class="stat-val">~95</span></div>
-        <div class="stat">D+ <span class="stat-val">~1 200 m</span></div>
+        <div class="stat">Km <span class="stat-val">90,3</span></div>
+        <div class="stat">D+ <span class="stat-val">1 030 m</span></div>
         <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div></div></div>
       </div>
     </div>
@@ -835,14 +967,14 @@
 
 <!-- J4 -->
 <div class="page">
-  <div class="section-tag">Jour 4 · ~75 km · ~700 m D+</div>
+  <div class="section-tag">Jour 4 · 75,4 km · 630 m D+ · J4 Giens – Porquerolles – Brégançon</div>
   <div class="day-header">
     <div class="day-number">4</div>
     <div class="day-title-block">
-      <h3>Boucle <em>Presqu'île de Giens</em></h3>
+      <h3>J4 — <em>Giens · Porquerolles · Brégançon</em></h3>
       <div class="day-stats">
-        <div class="stat">Km <span class="stat-val">~75</span></div>
-        <div class="stat">D+ <span class="stat-val">~700 m</span></div>
+        <div class="stat">Km <span class="stat-val">75,4</span></div>
+        <div class="stat">D+ <span class="stat-val">630 m</span></div>
         <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
       </div>
     </div>
@@ -892,50 +1024,81 @@
 
 <!-- J5 -->
 <div class="page">
-  <div class="section-tag">Jour 5 · ~100 km · ~1 400 m D+ · Journée engagée</div>
+  <div class="section-tag">Jour 5 · 51,7 km · 650 m D+ · J5 Restau étoilé</div>
   <div class="day-header">
     <div class="day-number">5</div>
     <div class="day-title-block">
-      <h3>Bormes → <em>Agriturismo Haut-Var</em></h3>
+      <h3>J5 — Bormes → <em>La Rouvière · Restau étoilé</em></h3>
       <div class="day-stats">
-        <div class="stat">Km <span class="stat-val">~100</span></div>
-        <div class="stat">D+ <span class="stat-val">~1 400 m</span></div>
-        <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div></div></div>
+        <div class="stat">Km <span class="stat-val">51,7</span></div>
+        <div class="stat">D+ <span class="stat-val">650 m</span></div>
+        <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
       </div>
     </div>
-  </div>
-
-  <div class="alert" style="margin-bottom:1.5rem;">
-    <div class="alert-title">⚠️ Journée la plus sérieuse — départ à 6h30</div>
-    <p>Trois ascensions distinctes avec peu de plat entre elles. <strong>Gérer le rythme dès le premier col.</strong> Prévoir des gels ou barres pour la montée finale vers La Garde-Freinet.</p>
   </div>
 
   <div class="route-points">
     <div class="route-points-label">Tracé</div>
     <div class="route-flow">
-      Bormes <span class="arr">→</span> Col de Caguo-Ven <span class="arr">→</span> Collobrières <span class="arr">→</span> Les Mayons <span class="arr">→</span> La Garde-Freinet <span class="arr">→</span> Gonfaron <span class="arr">→</span> Agriturismo
+      Bormes <span class="arr">→</span> Col de Caguo-Ven <span class="arr">→</span> Collobrières <span class="arr">→</span> Les Mayons <span class="arr">→</span> Gonfaron <span class="arr">→</span> Flassans-sur-Issole <span class="arr">→</span> Commanderie de Peyrassol
     </div>
   </div>
 
   <div class="prose">
-    <p><strong>Col de Caguo-Ven :</strong> Deuxième passage cette semaine — vous connaissez. Partir reposé, gérer l'effort dès ici.</p>
-    <p><strong>Collobrières :</strong> Deuxième passage aussi. Pas besoin de s'y attarder — ravitaillement eau et en route.</p>
-    <p><strong>La Garde-Freinet :</strong> Village sarrasin sur un éperon rocheux, très beau. C'est ici que se fait la pause déjeuner. <strong>L'Auberge Sarrasine</strong> ou le Café de France sur la place principale. La montée depuis Le Plan de la Tour par la D558 est l'ascension la plus régulière des Maures — 7 km à 5–6%, bonne route.</p>
-    <p><strong>Gonfaron :</strong> Village connu pour son Centre de soins pour la tortue d'Hermann (espèce protégée des Maures). On file vers l'agriturismo.</p>
-    <p><strong>Agriturismo :</strong> Le secteur Gonfaron / Le Luc / Les Mayons compte plusieurs domaines viticoles avec chambres. Chercher sur <strong>Agriturismo.it</strong>, Gîtes de France Var ou directement le <strong>Domaine de la Lauzade</strong> (Le Luc). Appeler pour confirmer l'heure d'arrivée — ne pas se pointer sans prévenir. Si le dîner à la ferme est proposé : ne pas refuser.</p>
+    <p><strong>Col de Caguo-Ven :</strong> Deuxième passage cette semaine — jambes rodées, rythme connu. Départ 7h pour avoir de la fraîcheur dans la montée forestière.</p>
+    <p><strong>Collobrières :</strong> Deuxième passage. Ravitaillement eau, repartir vite — la récompense du soir mérite d'arriver en forme.</p>
+    <p><strong>Les Mayons → Gonfaron :</strong> Sortie nord des Maures, descente vers la plaine du Haut-Var. Routes tranquilles dans les vignes et les pins.</p>
+    <p><strong>Flassans-sur-Issole → Peyrassol :</strong> La Commanderie de Peyrassol est sur la RN7, bien indiquée. Les derniers kilomètres traversent le vignoble — arrivée dans les vignes, sculptures contemporaines de Daniel Buren visibles depuis la route.</p>
   </div>
 
   <div class="tip-grid">
     <div class="tip">
-      <span class="tip-icon">🍷</span>
-      <div class="tip-label">Vin local</div>
-      <p>Le Haut-Var produit d'excellents Côtes de Provence. Dîner à la ferme avec le vin du domaine — c'est le moment.</p>
-    </div>
-    <div class="tip">
       <span class="tip-icon">🍽️</span>
       <div class="tip-label">Déjeuner</div>
-      <p>La Garde-Freinet — place principale. Pas de saut de repas sur cette journée.</p>
+      <p>Collobrières ou Les Mayons. Manger léger — le dîner du soir est une affaire sérieuse.</p>
     </div>
+    <div class="tip">
+      <span class="tip-icon">💧</span>
+      <div class="tip-label">Eau</div>
+      <p>Remplir à Collobrières — dernier point fiable avant Gonfaron.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🍷</span>
+      <div class="tip-label">À l'arrivée</div>
+      <p>Visite de la cave possible avant le dîner. Vins AOC Côtes de Provence du domaine en dégustation.</p>
+    </div>
+  </div>
+
+  <div class="peyrassol-block">
+    <div class="pb-label">🛏️ Hébergement · Nuit J5</div>
+    <h4>La Rouvière — Commanderie de Peyrassol</h4>
+    <p>Bastide de charme datant de 1835, nichée dans la forêt du domaine à 1 km de la Commanderie. Chambres familiales idéales pour 3 — salon commun, plusieurs chambres doubles et twin, salle de douche à l'italienne. Piscine, petits-déjeuners maison avec produits locaux.</p>
+    <p>📍 1204 chemin de la Commanderie de Peyrassol, RN7, 83340 Flassans-sur-Issole — Tél. 04 94 69 71 02</p>
+    <div class="peyrassol-photos">
+      <img src="https://www.peyrassol.com/wp-content/uploads/Chambres-d-hotes-hotel-var-la-rouviere-commanderie-de-peyrassol-copyright-olivier-monge-myop-55.jpg" alt="La Rouvière extérieur" loading="lazy">
+      <img src="https://www.peyrassol.com/wp-content/uploads/Chambres-d-hotes-hotel-var-la-rouviere-commanderie-de-peyrassol-copyright-olivier-monge-myop-51.jpg" alt="La Rouvière chambre" loading="lazy">
+      <img src="https://www.peyrassol.com/wp-content/uploads/Chambres-d-hotes-hotel-var-la-rouviere-commanderie-de-peyrassol-copyright-olivier-monge-myop-20.jpg" alt="La Rouvière chambre grands espaces" loading="lazy">
+      <img src="https://www.peyrassol.com/wp-content/uploads/Chambres-d-hotes-hotel-var-la-rouviere-commanderie-de-peyrassol-copyright-olivier-monge-myop-82.jpg" alt="La Rouvière piscine" loading="lazy">
+      <img src="https://www.peyrassol.com/wp-content/uploads/Chambres-d-hotes-hotel-var-la-rouviere-commanderie-de-peyrassol-copyright-olivier-monge-myop-41.jpg" alt="La Rouvière jardin" loading="lazy">
+      <img src="https://www.peyrassol.com/wp-content/uploads/Chambres-d-hotes-hotel-var-la-rouviere-commanderie-de-peyrassol-copyright-olivier-monge-myop-9.jpg" alt="La Rouvière terrasse" loading="lazy">
+    </div>
+    <a href="https://peyrassol-83340-booking.myasterio.com/betemplate/HOTELMONO/booking?kml_code=PEYRASSOL-83340" target="_blank" class="pb-btn">→ Réserver La Rouvière</a>
+  </div>
+
+  <div class="peyrassol-block">
+    <div class="pb-label">🌟 Restaurant · Dîner J5</div>
+    <h4>Chez Jeannette <span class="star-badge">★ Michelin 2026</span></h4>
+    <p>Restaurant gastronomique du domaine, 1 étoile Michelin renouvelée 2026, 2 toques Gault & Millau. Chef Benjamin Le Balch — cuisine de saison aux associations audacieuses, au-dessus des vignes et des œuvres de Daniel Buren. Produits du potager biologique du domaine et élevage respectueux sur 30 hectares.</p>
+    <p>Réservation indispensable — plusieurs semaines à l'avance en saison de mai.</p>
+    <div class="peyrassol-photos">
+      <img src="https://www.peyrassol.com/wp-content/uploads/Chez-Jeannette-Chef-Benjamin-Le-Balch_Commanderie-de-Peyrassol_%C2%A9MathildeDeHiley-6.jpg" alt="Chez Jeannette salle" loading="lazy">
+      <img src="https://www.peyrassol.com/wp-content/uploads/Chez-Jeannette-Chef-Benjamin-Le-Balch_Commanderie-de-Peyrassol_%C2%A9MathildeDeHiley-5.jpg" alt="Chez Jeannette plat" loading="lazy">
+      <img src="https://www.peyrassol.com/wp-content/uploads/Chez-Jeannette-Chef-Benjamin-Le-Balch_Commanderie-de-Peyrassol_%C2%A9MathildeDeHiley-4.jpg" alt="Chez Jeannette plat 2" loading="lazy">
+      <img src="https://www.peyrassol.com/wp-content/uploads/peyrassol-vin-rose-chez-jeannette-restaurant-var-gastronomie-salle-interieure-bis2.jpg" alt="Chez Jeannette intérieur" loading="lazy">
+      <img src="https://www.peyrassol.com/wp-content/uploads/Chez-Jeannette-Chef-Benjamin-Le-Balch_Commanderie-de-Peyrassol_%C2%A9MathildeDeHiley-2.jpg" alt="Chez Jeannette chef" loading="lazy">
+      <img src="https://www.peyrassol.com/wp-content/uploads/Chez-Jeannette-Chef-Benjamin-Le-Balch_Commanderie-de-Peyrassol_%C2%A9MathildeDeHiley-1.jpg" alt="Chez Jeannette dressage" loading="lazy">
+    </div>
+    <a href="https://widget.thefork.com/07e21a0c-23e8-4c39-82a0-5899922acfa0" target="_blank" class="pb-btn">→ Réserver Chez Jeannette</a>
   </div>
 </div>
   <div class="komoot-section">
@@ -949,50 +1112,59 @@
 
 <!-- J6 -->
 <div class="page">
-  <div class="section-tag">Jour 6 · ~130 km · ~1 400 m D+ · Journée longue</div>
+  <div class="section-tag">Jour 6 · 106 km · 1 290 m D+ · J6 boucle nord → retour TER des Arcs à Hyères</div>
   <div class="day-header">
     <div class="day-number">6</div>
     <div class="day-title-block">
-      <h3>Thoronet &amp; retour <em>Bormes</em></h3>
+      <h3>J6 — <em>Boucle nord · TER des Arcs → Hyères</em></h3>
       <div class="day-stats">
-        <div class="stat">Km <span class="stat-val">~130</span></div>
-        <div class="stat">D+ <span class="stat-val">~1 400 m</span></div>
-        <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div></div></div>
+        <div class="stat">Km <span class="stat-val">106</span></div>
+        <div class="stat">D+ <span class="stat-val">1 290 m</span></div>
+        <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot filled"></div><div class="dot filled"></div><div class="dot"></div><div class="dot"></div></div></div>
       </div>
     </div>
   </div>
 
+  <div class="alert alert-olive" style="margin-bottom:1.5rem;">
+    <div class="alert-title">🚂 Logistique TER — à préparer la veille</div>
+    <p>Gare de retour recommandée : <strong>Les Arcs-Draguignan</strong> → TER vers Toulon → Hyères (~1h) → 25km vélo côtiers jusqu'à Bormes. Réserver les emplacements vélo la veille : <a href="https://www.sncf-connect.com/train/horaires/les-arcs-draguignan/hyeres" target="_blank" style="color:var(--accent);">sncf-connect.com</a>.</p>
+  </div>
+
   <div class="route-points">
-    <div class="route-points-label">Tracé</div>
+    <div class="route-points-label">Tracé indicatif — à adapter sur le terrain</div>
     <div class="route-flow">
-      Agriturismo <span class="arr">→</span> Cabasse <span class="arr">→</span> Abbaye du Thoronet <span class="arr">→</span> Lorgues <span class="arr">→</span> Les Arcs-sur-Argens <span class="arr">→</span> Vidauban <span class="arr">→</span> Le Cannet-des-Maures <span class="arr">→</span> La Garde-Freinet <span class="arr">→</span> Col de Gratteloup <span class="arr">→</span> Bormes
+      Peyrassol <span class="arr">→</span> Abbaye du Thoronet <span class="arr">→</span> Cabasse <span class="arr">→</span> Salernes <span class="arr">→</span> Villecroze <span class="arr">→</span> Tourtour <span class="arr">→</span> Aups <span class="arr">→</span> Les Arcs-Draguignan <span class="arr">→</span> TER <span class="arr">→</span> Hyères <span class="arr">→</span> Bormes
     </div>
   </div>
 
-  <div class="alert" style="margin-bottom:1.5rem;">
-    <div class="alert-title">⚠️ Journée longue — départ à 7h impératif</div>
-    <p>La boucle aller (Thoronet, Lorgues, Les Arcs) représente déjà ~88km. Le retour via La Garde-Freinet ajoute ~40km et une dernière montée sérieuse. <strong>Ne pas traîner à l'abbaye au-delà de 11h30</strong> pour garder de la marge.</p>
-  </div>
-
   <div class="prose">
-    <p><strong>Abbaye du Thoronet :</strong> Joyau roman cistercien du XIIe siècle — architecture d'une austérité absolue, acoustique légendaire, silence de pierre. Réserver sa visite sur <strong>monuments-nationaux.fr</strong>. Ouverte <strong>tous les jours</strong> sauf 1er janvier, 1er mai et 25 décembre — pas de fermeture le mardi. Horaires : 10h–12h15 et 14h–16h15 (fermé le midi). Arriver à l'ouverture avant les groupes — la fermeture à 16h15 laisse peu de temps en fin de journée. Tél. 04 94 60 43 90. Si un concert de musique ancienne est programmé pendant votre séjour : occasion rare à saisir.</p>
-    <p><strong>Route Cabasse → Thoronet (D17) :</strong> Très belle route dans les collines boisées, peu fréquentée, terrain vallonné.</p>
-    <p><strong>Lorgues :</strong> Place de la mairie sous les platanes séculaires — déjeuner ici. <strong>Le Jardin de Benjamin</strong> pour de la gastronomie (réserver), ou plus simplement Le Cloître pour une cuisine régionale sous les platanes. Lorgues est au cœur du pays de la truffe noire et dans le vignoble Côtes de Provence — épiceries locales avec vente directe.</p>
-    <p><strong>Les Arcs-sur-Argens :</strong> Joli village médiéval (le Parage), château du XIIe. La gare des Arcs / Draguignan est sur la ligne Marseille-Nice — point de repli utile si une jambe flanche.</p>
-    <p><strong>Retour vers Bormes — Vidauban → Le Cannet-des-Maures → La Garde-Freinet :</strong> Depuis Vidauban, remonter plein ouest vers Le Cannet-des-Maures, puis la D558 vers La Garde-Freinet. C'est la dernière montée de la semaine — 7 km à 5–6% réguliers. Vue sur les Maures depuis le village. Descente plein sud vers Bormes — retour par La Croix-Valmer ou le littoral selon l'état des jambes.</p>
-    <p>Arrivée à Bormes en fin de journée — dernière nuit dans le village perché.</p>
+    <p><strong>Abbaye du Thoronet :</strong> À 10km de Lorgues, parfait en début de matinée. Ouverte tous les jours sauf jours fériés, 10h–12h15 et 14h–16h15. Réserver sur <strong>monuments-nationaux.fr</strong>. Arriver à l'ouverture — silence et lumière du matin incomparables dans ce joyau cistercien. Tél. 04 94 60 43 90.</p>
+    <p><strong>Salernes → Villecroze → Tourtour :</strong> Tourtour est surnommé "le village dans le ciel" — perché à 635m, vue à 180° sur la Provence. Route sinueuse et exigeante mais magnifique. Villecroze a ses grottes troglodytes et ses cascades. Secteur peu fréquenté, silence total.</p>
+    <p><strong>Aups :</strong> Capitale provençale de la truffe, marché du jeudi toute l'année. Bon ravitaillement — boulangeries, épiceries, fontaines. Point de pivot selon l'état des jambes : soit on pousse vers le <strong>Verdon</strong> (Moustiers-Sainte-Marie, ~30km plus loin, D+ sérieux), soit on redescend vers la gare.</p>
+    <p><strong>Retour en TER :</strong> Depuis Aups, le plus simple est de descendre sur <strong>Les Arcs-Draguignan</strong> (~35km, D- confortable) — gare sur la ligne Marseille-Nice. TER vers Toulon (35 min), puis vélo Toulon → Hyères → Bormes (~50km) ou taxi pour les derniers km si les jambes sont à bout. Alternative : redescendre vers <strong>Brignoles</strong> ou <strong>Saint-Maximin</strong> selon la direction choisie.</p>
+    <p><strong>Flexibilité totale :</strong> C'est la liberté de cette journée — pas d'hôtel à rejoindre, pas d'horaire imposé avant le TER. Aller aussi loin que les jambes le permettent, puis laisser le train faire le reste.</p>
   </div>
 
   <div class="tip-grid">
     <div class="tip">
+      <span class="tip-icon">🗺️</span>
+      <div class="tip-label">Gares de repli</div>
+      <p><strong>Les Arcs-Draguignan</strong> (ligne Nice-Marseille) — la plus commode depuis le nord. <strong>Brignoles</strong> si vous partez plus à l'ouest. Consulter SNCF Connect la veille pour les créneaux vélo.</p>
+    </div>
+    <div class="tip">
+      <span class="tip-icon">🏔️</span>
+      <div class="tip-label">Option Verdon</div>
+      <p>Moustiers-Sainte-Marie depuis Aups : +30km et +600m D+. Spectaculaire mais engagement sérieux — décider au feeling sur place.</p>
+    </div>
+    <div class="tip">
       <span class="tip-icon">📅</span>
-      <div class="tip-label">Fermeture</div>
-      <p>Abbaye ouverte tous les jours sauf jours fériés (1er jan, 1er mai, 25 déc). Aucune contrainte de jour de semaine.</p>
+      <div class="tip-label">Thoronet</div>
+      <p>Ouvert tous les jours sauf 1er jan, 1er mai, 25 déc. Pas de fermeture le mardi. Horaires 10h–12h15 / 14h–16h15.</p>
     </div>
     <div class="tip">
       <span class="tip-icon">🍽️</span>
       <div class="tip-label">Déjeuner</div>
-      <p>Lorgues, place de la mairie. Éviter de déjeuner à l'abbaye — casse-croûte sur place si besoin mais les restaurants de Lorgues sont bien meilleurs.</p>
+      <p>Tourtour ou Aups selon la progression. Aups a les meilleures options ravitaillement.</p>
     </div>
   </div>
 </div>
@@ -1007,14 +1179,14 @@
 
 <!-- J7 -->
 <div class="page">
-  <div class="section-tag">Jour 7 · ~60 km · ~400 m D+</div>
+  <div class="section-tag">Jour 7 · 39,5 km · 220 m D+ · J7 de Bormes-les-Mimosas à Toulon</div>
   <div class="day-header">
     <div class="day-number">7</div>
     <div class="day-title-block">
-      <h3>Bormes → <em>Gare de Toulon</em></h3>
+      <h3>J7 — Bormes-les-Mimosas → <em>Gare de Toulon</em></h3>
       <div class="day-stats">
-        <div class="stat">Km <span class="stat-val">~60</span></div>
-        <div class="stat">D+ <span class="stat-val">~400 m</span></div>
+        <div class="stat">Km <span class="stat-val">39,5</span></div>
+        <div class="stat">D+ <span class="stat-val">220 m</span></div>
         <div class="stat">Difficulté <div class="difficulty"><div class="dot filled"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
       </div>
     </div>
@@ -1153,7 +1325,7 @@
     <div class="tip">
       <span class="tip-icon">⚙️</span>
       <div class="tip-label">Développement</div>
-      <p>Braquet minimum conseillé : <strong>34×30 ou 34×32</strong>. Sur 8 jours avec 6 600m D+, les petits braquets ne sont pas une faiblesse — c'est de la gestion d'effort.</p>
+      <p>Braquet minimum conseillé : <strong>34×30 ou 34×32</strong>. Sur 8 jours avec 7 250m D+, les petits braquets ne sont pas une faiblesse — c'est de la gestion d'effort.</p>
     </div>
 
     <div class="tip">
@@ -1252,7 +1424,7 @@
 
 
 <footer>
-  <strong>Semaine Vélo · Massif des Maures</strong> &nbsp;·&nbsp; Début mai &nbsp;·&nbsp; 3 cyclistes &nbsp;·&nbsp; ~560 km · ~6 600 m D+<br><br>
+  <strong>Semaine Vélo · Massif des Maures</strong> &nbsp;·&nbsp; Début mai &nbsp;·&nbsp; 3 cyclistes &nbsp;·&nbsp; ~600 km · ~7 250 m D+<br><br>
   Topo non contractuel · Vérifier les fermetures DFCI chaque matin sur alertes-risques.com
 </footer>
 
